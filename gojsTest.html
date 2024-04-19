@@ -1,0 +1,36 @@
+<?DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <title>GoJS Test</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/1.8.12/go-debug.js"></script>
+
+    <script>
+        function init() {
+            var $ = go.GraphObject.make;
+            var myDiagram = $(go.Diagram, "myDiagramDiv");
+
+            myDiagram.nodeTemplate =
+                $(go.Node, "Auto",
+                    $(go.Shape, "RoundedRectangle", { fill: "white" }),
+                    $(go.TextBlock, { margin: 8 },
+                        new go.Binding("text", "key"))
+                );
+
+            myDiagram.model = new go.GraphLinksModel(
+                [
+                    { key: "Alpha" },
+                    { key: "Beta" }
+                ],
+                [
+                    { from: "Alpha", to: "Beta" }
+                ]
+            );
+        }
+    </script>
+</head>
+<body onload = "init()">
+    <div id="myDiagramDiv" style="width: 400px; height: 400px; border: 1px solid black;"></div>                                   
+</body>
+</html> 
